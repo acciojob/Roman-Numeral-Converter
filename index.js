@@ -4,18 +4,21 @@
 
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser')
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+const convertToRoman = require('./solution');
+
 app.use(express.static(__dirname))
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/main.html'));
-});
-//your code here
-app.post('/add', (req, res) => {
-  const {a,b} = req.body;
-  res.status(200).send(a+b);
-  // res.sendFile(path.join(__dirname + '/main.html'));
-});
+app.post('/romanConverter',(req, res) => {
+  const input = req.body.input
+  const answer = convertToRoman(input) 
+  res.send({roman:answer})
+})
+
 module.exports = app;
