@@ -15,6 +15,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "body-parser": "^1.20.0",
         "cypress": "^9.5.0",
         "express": "^4.17.1",
         "index.js": "0.0.3",
